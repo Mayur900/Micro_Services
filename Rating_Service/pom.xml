@@ -8,11 +8,11 @@
 		<version>3.2.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.hotel.service</groupId>
-	<artifactId>Hotel_Service</artifactId>
+	<groupId>com.rating.service</groupId>
+	<artifactId>Rating_Service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Hotel_Service</name>
-	<description>Micro Service for Hotel Service</description>
+	<name>Rating_Service</name>
+	<description>Micro Service for Rating Service</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -40,6 +40,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
