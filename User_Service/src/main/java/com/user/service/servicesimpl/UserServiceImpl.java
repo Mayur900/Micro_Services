@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.user.service.external.HotelService;
 import com.user.service.model.Hotel;
 import com.user.service.model.Rating;
 import com.user.service.model.User;
@@ -25,6 +26,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	public UserServiceRepositry userServiceRepositry;
+	
+	@Autowired
+	private HotelService hotelService;
 	
 	@Override
 	public User saveUser(User user) {
@@ -52,8 +56,9 @@ public class UserServiceImpl implements UserService {
 		List<Rating> list = Arrays.stream(RList).collect(Collectors.toList());
 		
 		list.forEach(p -> {
-			ResponseEntity<Hotel> hotel = restTemp.getForEntity("http://Hotel-Service/getHotel/"+p.getHotelId(), Hotel.class);
-			p.setHotel(hotel.getBody());
+			//ResponseEntity<Hotel> hotel = restTemp.getForEntity("http://Hotel-Service/getHotel/"+p.getHotelId(), Hotel.class);
+			Hotel hotel = hotelService.getHotel(p.getHotelId());	
+			p.setHotel(hotel);
 		});
 		user.setRating(list);
 		return user;
