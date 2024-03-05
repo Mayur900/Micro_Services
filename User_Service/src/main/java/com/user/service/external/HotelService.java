@@ -9,7 +9,7 @@ import com.user.service.model.Hotel;
 @FeignClient(name = "Hotel-Service")
 public interface HotelService {
 	
-	@GetMapping("/getHotel/{hotelId}")
+	@GetMapping("/hotels/getHotel/{hotelId}")
 	Hotel getHotel(@PathVariable int hotelId);
 
 }

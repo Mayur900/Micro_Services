@@ -28,10 +28,10 @@ public class User {
 	
 	
 	
-	
 	public List<Rating> getRating() {
 		return rating;
 	}
+	
 	public void setRating(List<Rating> rating) {
 		this.rating = rating;
 	}

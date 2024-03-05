@@ -3,11 +3,9 @@ package com.user.service.servicesimpl;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -40,7 +38,7 @@ public class UserServiceImpl implements UserService {
 		List<User> list = userServiceRepositry.findAll();
 		
 		list.forEach(s -> {
-			ArrayList<Rating> userList = restTemp.getForObject("http://Rating-Service/getRatingByUserId/"+s.getUserId(), ArrayList.class);
+			ArrayList<Rating> userList = restTemp.getForObject("http://Rating-Service/ratings/getRatingByUserId/"+s.getUserId(), ArrayList.class);
 			s.setRating(userList);
 		});
 		return list; 
@@ -51,7 +49,7 @@ public class UserServiceImpl implements UserService {
 	public User getUser(int id) {
 		User user =  userServiceRepositry.findById(id).get();
 		@SuppressWarnings("unchecked")
-		Rating[] RList = restTemp.getForObject("http://Rating-Service/getRatingByUserId/"+id, Rating[].class);
+		Rating[] RList = restTemp.getForObject("http://Rating-Service/ratings/getRatingByUserId/"+id, Rating[].class);
 		
 		List<Rating> list = Arrays.stream(RList).collect(Collectors.toList());
 		
