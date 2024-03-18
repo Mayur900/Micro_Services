@@ -48,7 +48,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUser(int id) {
 		User user =  userServiceRepositry.findById(id).get();
-		@SuppressWarnings("unchecked")
 		Rating[] RList = restTemp.getForObject("http://Rating-Service/ratings/getRatingByUserId/"+id, Rating[].class);
 		
 		List<Rating> list = Arrays.stream(RList).collect(Collectors.toList());
